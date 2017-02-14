@@ -24,6 +24,10 @@ export default Ember.Component.extend({
   _cancelLabel: Ember.computed('config', function() {
     return this._getLabel('cancel') || 'Cancel';
   }),
+  
+  _formClass: Ember.computed('config', 'form-class', function() {
+    return this._getLabel('form-class');
+  }),
 
   _getLabel(type) {
     const i18n = this.get('i18n');

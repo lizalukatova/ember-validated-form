@@ -1,4 +1,4 @@
-<form class="{{if submitted 'submitted'}} {{_formClass}}" {{action "submit" on="submit"}}>
+<form class="{{_formClass}} {{if submitted 'submitted'}}" {{action "submit" on="submit"}}>
   {{yield (hash
     input=(component 'validated-input' model=model submitted=submitted config=config)
   )}}

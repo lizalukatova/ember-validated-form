@@ -26,7 +26,7 @@ export default Ember.Component.extend({
   }),
   
   _formClass: Ember.computed('config', 'form-class', function() {
-    return this._getLabel('formclass');
+    return this._getLabel('form') || 'Form-class';
   }),
 
   _getLabel(type) {

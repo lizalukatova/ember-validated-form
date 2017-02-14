@@ -1,14 +1,14 @@
-<form class="{{if submitted 'submitted'}}" {{action "submit" on="submit"}}>
+<form class="{{if submitted 'submitted'}} {{config.css.form}}" {{action "submit" on="submit"}}>
   {{yield (hash
     input=(component 'validated-input' model=model submitted=submitted config=config)
   )}}
 
   <p>
     {{#if on-submit}}
-      <button class="btn btn-primary" type="submit">{{_submitLabel}}</button>
+      <button class={{config.css.submit}} type="submit">{{_submitLabel}}</button>
     {{/if}}
     {{#if on-cancel}}
-      <button class="btn btn-default" {{action on-cancel}}>
+      <button class={{config.css.cancel}} {{action on-cancel}}>
         {{_cancelLabel}}</button>
     {{/if}}
   </p>

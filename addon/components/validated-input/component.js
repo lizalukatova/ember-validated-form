@@ -38,13 +38,40 @@ export default Ember.Component.extend({
   showError: Ember.computed('isValid', 'dirty', 'submitted', function() {
     return !this.get('isValid') && (this.get('dirty') || this.get('submitted'));
   }),
+  
+  _labelClass: Ember.computed('config', 'label-class', function() {
+    return this._getClass('label');
+  }),
+  
+  _inputWrapClass: Ember.computed('config', 'input-wrap-class', function() {
+    return this._getClass('input');
+  }),
+  
+  _configClass(type) {
+    return this.get(`config.class.${type}`);
+  },
+  
+  _getClass(type) {
+    const i18n = this.get('i18n');
+    const customClass = this.get(`${type}-class`);
+    if (customClass) {
+      return customClass;
+    }
+    const defaultClass = this._configClass(type);
+    return i18n ? i18n.t(defaultClass) : defaultClass;
+  },
+
 
   init() {
     this._super(...arguments);
     // mark field as required if validation errors are present during init.
     if (this.get(`model.error.${this.get('name')}.validation`)) {
       this.set('required', true);
-    }
+    };
+	
+	let owner = Ember.getOwner(this);
+    let factory = owner.factoryFor ? owner.factoryFor('service:i18n') : owner._lookupFactory('service:i18n');
+    this.set('i18n', factory ? factory.create() : null);
   },
 
   actions: {

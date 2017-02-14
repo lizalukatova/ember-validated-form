@@ -5,11 +5,15 @@
 
   <p>
     {{#if on-submit}}
-      <button class={{config.css.submit}} type="submit">{{_submitLabel}}</button>
+		<div class="{{_buttonClass}}">
+		  <button class={{config.css.submit}} type="submit">{{_submitLabel}}</button>
+		</div>
     {{/if}}
     {{#if on-cancel}}
-      <button class={{config.css.cancel}} {{action on-cancel}}>
-        {{_cancelLabel}}</button>
+		<div class="{{_buttonClass}}">
+		  <button class={{config.css.cancel}} {{action on-cancel}}>
+			{{_cancelLabel}}</button>
+		</div>
     {{/if}}
   </p>
 </form>
